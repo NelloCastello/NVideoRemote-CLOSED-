@@ -1,5 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div= gg
+
+  button(class="fullscreen-btn__global")
+    img(src="/images/icons/fullscreen.svg", alt="")
+
+  main(class="home-content")
+    div(class="head-block")
+      a(href="/")
+        img(class="logo" src="/images/nsoft-logo.svg", alt="")
+      div(class="head-wrapper")
+        div(class="head")
+          a(href="/")
+            <span class="n-decor">N</span>VIDEOREMOTE
+          p(class="subhead") Источник: <a class="link" href="https://rezka.ag/">rezka.ag</a>
+
+    form(action="/search", method="get")
+      input(class="search search__global" type="search" name="search" placeholder="Какой фильм?")
+
+    div(class="recent-block subcontent__global")
+      h1(class="head") Недавние:
+      div(class="items-wrapper")
+        article(class="video-item video-item__global")
+          img(class="cover-bg" src="/images/1--example.jpg", alt="")
+          div(class="wrapper")
+            a(class="play-btn" href="#")
+              img(src="/images/play-btn.svg", alt="PLAY")
+            div(class="info-wrapper")
+              h1(class="head-video") Черная нить (2018)
+              p(class="recent-time") 00:12:57
+            

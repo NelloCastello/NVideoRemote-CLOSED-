@@ -1,1 +1,119 @@
+@import "home/home"
+@import "search/search"
+
+
+*
+    padding: 0
+    margin: 0
+    line-height: auto
+
 body
+    background-image: url("/images/bg/parallax-bg.jpg")
+    background-attachment: fixed
+    background-size: cover
+    background-repeat: no-repeat
+    font-family: 'Roboto'
+    display: flex
+    min-height: 100vh
+
+a
+    color: inherit
+    text-decoration: inherit
+
+h1
+    font-family: inherit
+    font-size: inherit
+    font-weight: inherit
+
+.content
+    position: relative
+    width: 100%
+    max-width: 1280px
+    margin: 0 auto
+    // border-left: 1px red solid
+    // border-right: 1px red solid
+    padding: 30px 20px
+
+.fullscreen-btn__global
+    img
+        height: 100%
+    
+    background: none
+    border: none
+    position: absolute
+    height: 25px
+    top: 5px
+    right: 5px
+
+.search__global
+    outline: none
+    border: none
+    width: 100%
+    font-size: 17px
+    padding: 8px 10px
+    border-radius: 5px
+    border: 1px #FF00BF solid
+    color: #FF00BF
+    font-weight: bold
+
+    &::placeholder
+        font-weight: normal
+        color: rgba(73, 73, 73, 0.61)
+
+
+.subcontent__global
+    display: flex
+    flex-direction: column
+
+    .head
+        color: #626262
+        font-size: 13px
+        margin-bottom: 10px
+
+.video-item__global
+    position: relative
+    display: flex
+    flex-direction: column
+    width: fit-content
+    border: 1px #FF00BF solid
+    border-radius: 5px
+    overflow: hidden
+    
+    .cover-bg
+        width: 155px
+
+    .wrapper
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        .play-btn
+            width: 37px
+            
+            img
+                width: 100%
+
+        .info-wrapper
+            position: absolute
+            display: flex
+            flex-direction: column
+            align-items: center
+            bottom: 0
+            padding: 10px 5px 20px
+            background: #00000080
+            color: #fff
+
+            .head-video
+                font-weight: bold
+                font-size: 14px
+                margin-bottom: 5px
+
+            .recent-time
+                font-size: 9px
+        

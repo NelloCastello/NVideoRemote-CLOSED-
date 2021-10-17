@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    main(class="search-content")
+        form(action="#", method="get")
+            input(class="search search__global" type="search" name="search" placeholder="Какой фильм?" value=search)
+
+        div(class="search-result-block subcontent__global")
+            h1(class="head") Недавние:
+            div(class="items-wrapper")
+                article(class="video-item video-item__global")
+                    img(class="cover-bg" src="/images/1--example.jpg", alt="")
+                    div(class="wrapper")
+                        a(class="play-btn" href="#")
+                            img(src="/images/play-btn.svg", alt="PLAY")
+                        div(class="info-wrapper")
+                            h1(class="head-video") Черная нить (2018)

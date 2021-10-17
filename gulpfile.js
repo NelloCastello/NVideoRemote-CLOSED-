@@ -2,7 +2,8 @@ const { src, parallel, series, watch, dest } = require('gulp');
 const browser_sync      = require('browser-sync');
 const concat            = require('gulp-concat');
 const sass              = require('gulp-sass')(require('sass'));
-const browserify        = require('gulp-browserify');
+const browserify        = require('browserify');
+const source            = require('vinyl-source-stream');
 const uglify            = require('gulp-uglify-es').default;
 
 function start() {
@@ -14,34 +15,34 @@ function start() {
 function sassBuild() {
     return src('src/sass/**/*.sass')
         .pipe(sass({
-            outputStyle: 'compressed'
+            outputStyle: 'expanded'
         }).on('error', sass.logError))
         .pipe(concat("style.css"))
-        .pipe(dest('public/stylesheets'));
+        .pipe(dest('public/stylesheets'))
+        .pipe(browser_sync.stream());
 }
 
 function liveReload() {
     return browser_sync({
         proxy: `localhost:${(process.env.PORT || 3000).toString()}`,
-        port: 3001
+        port: 3001,
+        open: false
     });
 }
 
 function scriptsBuild() {
-    return src("src/javascripts/main.js")
-        .pipe(browserify({
-            insertGlobals: true
-        }))
-        .pipe(concat("script.js"))
-        .pipe(uglify())
-        .pipe(dest("public/javascripts"));
+    return browserify('src/javascripts/main.js', {
+        debug: process.env.DEBUG? true: false,
+        insertGlobals: true
+    })
+        .bundle()
+        .pipe(source('script.js'))
+        .pipe(dest('public/javascripts'))
 }
 
 function watching() {
     watch([
-        "views/**/*.jade",
-        "public/stylesheets/**/*.css",
-        "public/scripts/**/*.js"
+        "views/**/*.jade"
     ]).on("change", browser_sync.reload);
 
     watch([
@@ -54,6 +55,8 @@ function watching() {
 }
 
 exports.default = series(
+    sassBuild,
+    scriptsBuild,
     parallel(
         start,
         watching,
